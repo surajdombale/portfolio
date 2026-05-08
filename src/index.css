@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  --font-headline: "Manrope", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-label: "Space Grotesk", sans-serif;
+
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-primary: var(--primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary: var(--on-primary);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-tertiary: var(--tertiary);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+}
+
+:root {
+  --background: #0b1326;
+  --surface: #0b1326;
+  --surface-dim: #0b1326;
+  --surface-bright: #31394d;
+  --surface-container-lowest: #060e20;
+  --surface-container-low: #131b2e;
+  --surface-container: #171f33;
+  --surface-container-high: #222a3d;
+  --surface-container-highest: #2d3449;
+  --on-surface: #dae2fd;
+  --on-surface-variant: #bdc9c5;
+  --primary: #3cddc7;
+  --primary-container: #00796c;
+  --on-primary: #003731;
+  --on-primary-fixed: #00201c;
+  --secondary: #c0c1ff;
+  --on-secondary: #1000a9;
+  --tertiary: #ffb59f;
+  --outline: #879390;
+  --outline-variant: #3e4946;
+}
+
+.light {
+  --background: #f8fafc;
+  --surface: #f8fafc;
+  --surface-dim: #f1f5f9;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f1f5f9;
+  --surface-container: #e2e8f0;
+  --surface-container-high: #cbd5e1;
+  --surface-container-highest: #94a3b8;
+  --on-surface: #0f172a;
+  --on-surface-variant: #475569;
+  --primary: #0d9488;
+  --primary-container: #ccfbf1;
+  --on-primary: #ffffff;
+  --on-primary-fixed: #042f2e;
+  --secondary: #4f46e5;
+  --on-secondary: #ffffff;
+  --tertiary: #ea580c;
+  --outline: #64748b;
+  --outline-variant: #cbd5e1;
+}
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+  body {
+    @apply bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .hero-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(60, 221, 199, 0.08) 0%, transparent 70%);
+  }
+  .light .hero-glow {
+    background: radial-gradient(circle at 50% 50%, rgba(13, 148, 136, 0.05) 0%, transparent 70%);
+  }
+  .liquid-blob {
+    filter: blur(80px);
+    opacity: 0.15;
+    z-index: -1;
+  }
+  .light .liquid-blob {
+    opacity: 0.1;
+  }
+  .glass-nav {
+    @apply bg-surface/70 backdrop-blur-xl;
+  }
+  .gradient-button {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  }
+}
