@@ -123,6 +123,16 @@ const Navbar = ({ activeSection, setActiveSection, theme, toggleTheme }: {
     </nav>
   );
 };
+const startDate = new Date(2021, 6); // July 2021 (month is 0-based, so 6 = July)
+const today = new Date();
+
+let years = today.getFullYear() - startDate.getFullYear();
+if (
+  today.getMonth() < startDate.getMonth() ||
+  (today.getMonth() === startDate.getMonth() && today.getDate() < startDate.getDate())
+) {
+  years--;
+}
 
 const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onContactClick: () => void }) => (
   <section id="home" className="relative min-h-screen flex flex-col justify-center items-center px-6 pt-20 overflow-hidden">
@@ -150,7 +160,7 @@ const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onCont
         </h1>
         
         <p className="max-w-xl text-lg md:text-xl text-on-surface-variant leading-relaxed font-body font-medium">
-          With over <span className="text-primary">4+ years</span> of experience building scalable full-stack systems using React, Next.js, and Java.
+          With over <span className="text-primary">{years}+ years</span> of experience building scalable full-stack systems using React, Next.js, and Java.
           Experienced in designing payment flows, webhook architectures, and integrations with platforms like <span className="text-secondary">Stripe</span>, <span className="text-secondary">Paypal</span>, <span className="text-secondary">Tremendous</span>, <span className="text-secondary">Razorpay</span> and <span className="text-secondary">Cashfree</span>. I bridge the gap between technical complexity and intuitive user experiences.
         </p>
         
