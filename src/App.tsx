@@ -45,7 +45,8 @@ import {
 import portfolio from './images/portfolio.jpg';
 import stripe from './images/stripe.jpeg';
 import razorpay from './images/razorpayX.webp';
-import zapier from './images/zapier.jpeg';
+import zapier from './images/zapier.png';
+import dashboard from './images/dash.png';
 
 
 const Navbar = ({ activeSection, setActiveSection, theme, toggleTheme }: { 
@@ -190,8 +191,8 @@ const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onCont
         <div className="relative w-full aspect-square">
           <div className="absolute inset-0 bg-surface-container rounded-[2.5rem] overflow-hidden border border-outline-variant/10 transform rotate-3 scale-95 z-0">
             <img 
-              className="w-full h-full object-cover opacity-60 mix-blend-luminosity" 
-              src="https://picsum.photos/seed/code/800/800" 
+              className="w-full h-full object-cover opacity-80 mix-blend-luminosity" 
+              src={dashboard} 
               alt="Code background"
               referrerPolicy="no-referrer"
             />
@@ -597,7 +598,7 @@ const Skills = () => (
               year="2021 — 2024"
               role="Software Engineer"
               company="GuruSoftwares"
-              color="secondary"
+              color="primary"
               points={[
                 "Started my professional journey as a Software Engineer, building a strong foundation in backend and full-stack development using Java, Spring Boot, and React.js.",
 
