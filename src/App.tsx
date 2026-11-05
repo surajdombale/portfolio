@@ -41,7 +41,8 @@ import {
   Workflow,      // Zapier
   Server,        // Spring Boot
   Wallet,        // PayPal
-  Container      // Docker
+  Container,     // Docker
+  Code as CodeIcon // LeetCode
 } from 'lucide-react';
 import portfolio from './images/portfolio.jpg';
 import stripe from './images/stripe.jpeg';
@@ -841,7 +842,7 @@ const Contact = () => (
             </div>
             <div>
               <h4 className="font-headline font-bold text-on-surface text-lg">Email</h4>
-              <p className="text-on-surface-variant font-body">surajdombale@gmail.com</p>
+              <a className="text-on-surface-variant font-body hover:text-primary transition-colors" href="mailto:surajdombale@gmail.com">surajdombale@gmail.com</a>
             </div>
           </div>
           <div className="flex items-start gap-6">
@@ -871,7 +872,8 @@ const Contact = () => (
           <div className="flex gap-4">
             {[
               { icon: <Github />, label: 'GitHub', href:"https://github.com/surajdombale" },
-              { icon: <Linkedin />, label: 'LinkedIn', href:"https://linkedin.com/in/suraj-dombale" },
+              { icon: <Linkedin />, label: 'LinkedIn', href:"https://www.linkedin.com/in/suraj-dombale/" },
+              { icon: <CodeIcon />, label: 'LeetCode', href:"https://leetcode.com/u/surajdombale/" },
               { icon: <Instagram />, label: 'Instagram', href:"https://instagram.com/nomad__foodie" }
             ].map(social => (
               <a key={social.label} className="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-highest hover:-translate-y-1 transition-all duration-300 group" href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer">
@@ -908,7 +910,8 @@ const Footer = () => (
       </div>
       <div className="flex gap-8">
         <a key={"GitHub"} className="text-on-surface-variant hover:text-primary transition-colors font-body text-sm" href="https://github.com/surajdombale" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a key={"LinkedIn"} className="text-on-surface-variant hover:text-primary transition-colors font-body text-sm" href="https://linkedin.com/in/suraj-dombale" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a key={"LinkedIn"} className="text-on-surface-variant hover:text-primary transition-colors font-body text-sm" href="https://www.linkedin.com/in/suraj-dombale/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a key={"LeetCode"} className="text-on-surface-variant hover:text-primary transition-colors font-body text-sm" href="https://leetcode.com/u/surajdombale/" target="_blank" rel="noopener noreferrer">LeetCode</a>
         <a key={"Email"} className="text-on-surface-variant hover:text-primary transition-colors font-body text-sm" href="mailto:surajdombale@gmail.com">Email</a>
       </div>
     </div>
