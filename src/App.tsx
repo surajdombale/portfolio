@@ -721,7 +721,7 @@ const Contact = () => (
               { icon: <Linkedin />, label: 'LinkedIn', href:"https://linkedin.com/in/suraj-dombale" },
               { icon: <Instagram />, label: 'Instagram', href:"https://instagram.com/nomad__foodie" }
             ].map(social => (
-              <a key={social.label} className="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-highest transition-colors group" href={social.href} target="_blank" rel="noopener noreferrer">
+              <a key={social.label} className="w-14 h-14 rounded-xl bg-surface-container flex items-center justify-center hover:bg-surface-container-highest hover:-translate-y-1 transition-all duration-300 group" href={social.href} aria-label={social.label} target="_blank" rel="noopener noreferrer">
                 <span className="text-on-surface-variant group-hover:text-primary transition-colors">{social.icon}</span>
                 <span className="sr-only">{social.label}</span>
               </a>
