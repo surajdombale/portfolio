@@ -8,7 +8,7 @@ import { execSync } from 'node:child_process';
 import { cpSync, existsSync, readdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
-const REPO = 'https://github.com/surajdombale/profile.git';
+const REPO = 'https://surajdombale@github.com/surajdombale/profile.git';
 const BRANCH = 'main';
 const BASE = '/profile/';
 
