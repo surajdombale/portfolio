@@ -82,7 +82,7 @@ const Navbar = ({ activeSection, setActiveSection, theme, toggleTheme }: {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3 border-b border-outline-variant/20 shadow-lg shadow-black/10' : 'bg-transparent py-5 border-b border-transparent'}`}>
       <div className="flex justify-between items-center max-w-[1500px] mx-auto px-8">
         <div className="text-xl font-bold tracking-tighter text-primary font-headline cursor-pointer" onClick={() => setActiveSection('home')}>
           Suraj Dombale
