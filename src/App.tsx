@@ -397,13 +397,52 @@ const ReferralRocket = () => (
           <PrivateCode />
         </div>
       </div>
-      <div className="w-full md:w-2/5 flex items-center justify-center p-8 lg:p-10 bg-surface-container-lowest/60 border-t md:border-t-0 md:border-l border-outline-variant/10">
-        <img
-          src={stripe}
-          alt="Referral Rocket on the Stripe App Marketplace"
-          className="w-full h-auto rounded-lg shadow-xl shadow-black/20 md:grayscale md:opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
-          referrerPolicy="no-referrer"
-        />
+      <div className="w-full md:w-2/5 flex flex-col justify-center gap-6 p-8 lg:p-10 bg-surface-container-lowest/60 border-t md:border-t-0 md:border-l border-outline-variant/10">
+        <div>
+          <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold mb-3">Built for</p>
+          <div className="flex flex-wrap gap-2">
+            {['SaaS companies', 'B2C companies', 'Affiliates', 'Influencers'].map(item => (
+              <span key={item} className="px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant/10 text-xs font-bold text-on-surface">
+                {item}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <a
+          href="https://marketplace.stripe.com/apps/referral-rocket-affiliate-software"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block"
+          aria-label="Referral Rocket on the Stripe App Marketplace"
+        >
+          <img
+            src={stripe}
+            alt="Referral Rocket on the Stripe App Marketplace"
+            className="w-full h-auto rounded-lg shadow-xl shadow-black/20 md:grayscale md:opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
+            referrerPolicy="no-referrer"
+          />
+        </a>
+
+        <div>
+          <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold mb-3">Where it plugs in</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { icon: <CreditCard size={18} />, label: 'Stripe App', detail: 'Marketplace listing' },
+              { icon: <Workflow size={18} />, label: 'Zapier app', detail: 'Workflow automation' },
+              { icon: <Globe size={18} />, label: 'Widgets', detail: 'Hosted on partner sites' },
+              { icon: <Wallet size={18} />, label: 'Payouts', detail: 'Tax calc · 1099 / W-9' },
+            ].map(item => (
+              <div key={item.label} className="flex items-center gap-3 p-3 rounded-lg bg-surface-container border border-outline-variant/10">
+                <span className="text-primary shrink-0">{item.icon}</span>
+                <div className="min-w-0">
+                  <p className="font-headline font-bold text-sm text-on-surface">{item.label}</p>
+                  <p className="text-xs text-on-surface-variant">{item.detail}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </article>
