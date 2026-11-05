@@ -40,7 +40,8 @@ import {
   CreditCard,    // Stripe
   Workflow,      // Zapier
   Server,        // Spring Boot
-  Wallet         // PayPal
+  Wallet,        // PayPal
+  Container      // Docker
 } from 'lucide-react';
 import portfolio from './images/portfolio.jpg';
 import stripe from './images/stripe.jpeg';
@@ -267,6 +268,7 @@ const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onCont
           { icon: <CreditCard />, name: 'Stripe' },
           { icon: <Workflow />, name: 'Zapier' },
           { icon: <Wallet />, name: 'PayPal' },
+          { icon: <Container />, name: 'Docker' },
         ].map(skill => (
           <div key={skill.name} className="flex items-center gap-2 font-headline font-bold text-xl">
             <span className="text-primary">{skill.icon}</span> {skill.name}
@@ -666,7 +668,7 @@ const Skills = () => (
             <Sparkles className="text-primary" size={32} />
           </div>
           <div className="flex flex-wrap gap-3">
-            {['React.js', 'Next.js', 'JavaScript'].map(skill => (
+            {['React.js', 'Next.js', 'JavaScript', 'HTML', 'CSS', 'JavaFX'].map(skill => (
               <span key={skill} className="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full font-label text-xs uppercase tracking-wider border border-outline-variant/5 group-hover:border-primary/20 transition-colors">{skill}</span>
             ))}
           </div>
@@ -678,7 +680,7 @@ const Skills = () => (
             <DatabaseIcon className="text-secondary" size={32} />
           </div>
           <div className="flex flex-wrap gap-3">
-            {['Java', 'MySQL', 'Spring Boot', 'S3 Storage'].map(skill => (
+            {['Java', 'Spring Boot', 'Hibernate / JPA', 'REST APIs', 'MySQL', 'Flyway', 'Stripe APIs', 'Stripe Apps', 'S3 Storage'].map(skill => (
               <span key={skill} className="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full font-label text-xs uppercase tracking-wider border border-outline-variant/5 group-hover:border-secondary/20 transition-colors">{skill}</span>
             ))}
           </div>
@@ -690,10 +692,18 @@ const Skills = () => (
             <Wrench className="text-tertiary" size={32} />
           </div>
           <div className="flex flex-wrap gap-3">
-            {['Docker', 'AWS', 'Git', 'Figma', 'Vercel', 'Jira'].map(skill => (
+            {['Docker', 'DigitalOcean', 'AWS', 'Maven', 'Git', 'Figma', 'Vercel', 'Jira', 'AI-assisted development (Claude)'].map(skill => (
               <span key={skill} className="bg-surface-container-lowest text-on-surface-variant px-4 py-1.5 rounded-full font-label text-xs uppercase tracking-wider border border-outline-variant/5 group-hover:border-tertiary/20 transition-colors">{skill}</span>
             ))}
           </div>
+        </div>
+        {/* In progress */}
+        <div className="md:col-span-12 bg-surface-container rounded-xl px-8 py-6 border border-dashed border-tertiary/30 flex flex-col sm:flex-row sm:items-center gap-4">
+          <span className="inline-flex items-center gap-2 font-label text-xs uppercase tracking-widest text-tertiary font-bold">
+            <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+            In progress
+          </span>
+          <span className="text-on-surface-variant">OPC UA · PLC integration for SmartBatch360</span>
         </div>
       </div>
     </div>
