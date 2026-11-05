@@ -168,7 +168,7 @@ const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onCont
         </h1>
         
         <p className="max-w-xl text-lg md:text-xl text-on-surface-variant leading-relaxed font-body font-medium">
-          With over <span className="text-primary">{years}+ years</span> of experience building scalable full-stack systems using React, Next.js, and Java.
+          With <span className="text-primary">{years}+ years</span> of experience building scalable full-stack systems using Java, Spring Boot, React and Next.js.
           Experienced in designing payment flows, webhook architectures, and integrations with platforms like <span className="text-secondary">Stripe</span>, <span className="text-secondary">Paypal</span>, <span className="text-secondary">Tremendous</span>, <span className="text-secondary">Razorpay</span> and <span className="text-secondary">Cashfree</span>. I bridge the gap between technical complexity and intuitive user experiences.
         </p>
         
@@ -215,8 +215,8 @@ const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onCont
                 <LayoutGrid className="text-primary" />
               </div>
               <div>
-                <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold">Current Focus</p>
-                <p className="font-headline font-bold text-on-surface">Scalable Architecture</p>
+                <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/60 font-bold">Building now</p>
+                <p className="font-headline font-bold text-on-surface">Stripe Bookkeeper</p>
               </div>
             </div>
             <div className="space-y-3">
@@ -485,7 +485,7 @@ const Projects = () => (
         Selected <span className="text-primary">Works</span>
       </h1>
       <p className="text-on-surface-variant max-w-2xl text-lg leading-relaxed">
-        A collection of digital experiences crafted with precision, exploring the intersection of aesthetics and functional engineering.
+        Products I've designed and built: bookkeeping on Stripe, an affiliate platform for SaaS and B2C companies, and desktop software for a concrete batching plant.
       </p>
     </header>
 
@@ -537,7 +537,7 @@ const Projects = () => (
       </article>
 
       {/* Project 3 */}
-      <article className="lg:col-span-5 lg: group">
+      <article className="lg:col-span-5 group">
         <div className="bg-surface-container rounded-xl p-8 lg:p-10 space-y-8 group-hover:bg-surface-container-high transition-colors duration-500 flex flex-col h-full justify-between">
 
           <div className="space-y-6">
@@ -572,7 +572,7 @@ const Projects = () => (
               <TerminalIcon size={16} /> Private Codebase
             </span>
           </div>
-          <div className="h-64 rounded-xl overflow-hidden  opacity-40 group-hover:opacity-80 transition-opacity">
+          <div className="h-64 rounded-xl overflow-hidden md:opacity-40 group-hover:opacity-100 transition-opacity duration-500">
             <img
               src={razorpay}
               alt="Razorpay Payment & Payout System"
@@ -589,13 +589,6 @@ const Projects = () => (
 
           {/* Header */}
           <div className="space-y-4">
-            <div className="flex flex-wrap gap-2">
-              {['RAZORPAY', 'WEBHOOKS', 'PAYOUTS', 'JAVA'].map(tag => (
-                <span key={tag} className="font-label text-[10px] px-3 py-1 bg-surface-container-lowest text-on-surface-variant rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
             <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface">
               Engineering Highlights
             </h2>
@@ -797,6 +790,20 @@ const TimelineItem = ({ year, role, company, points, description, color }: any) 
   </div>
 );
 
+const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  const data = new FormData(e.currentTarget);
+  const name = String(data.get('name') || '');
+  const email = String(data.get('email') || '');
+  const message = String(data.get('message') || '');
+  const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
+  const body = encodeURIComponent(`${message}
+
+${name}
+${email}`);
+  window.location.href = `mailto:surajdombale@gmail.com?subject=${subject}&body=${body}`;
+};
+
 const Contact = () => (
   <section id="contact" className="pt-32 pb-24 px-6 md:px-12 max-w-[1500px] mx-auto">
     <header className="mb-20">
@@ -812,20 +819,20 @@ const Contact = () => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       <section className="lg:col-span-7 bg-surface-container-low p-8 md:p-12 rounded-xl relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <form className="relative z-10 space-y-8">
+        <form className="relative z-10 space-y-8" onSubmit={handleContactSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="group">
-              <label className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Name</label>
-              <input className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40" placeholder="John Doe" type="text"/>
+              <label htmlFor="contact-name" className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Name</label>
+              <input className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40" placeholder="John Doe" type="text" id="contact-name" name="name" required/>
             </div>
             <div className="group">
-              <label className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Email</label>
-              <input className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40" placeholder="john@example.com" type="email"/>
+              <label htmlFor="contact-email" className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Email</label>
+              <input className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40" placeholder="john@example.com" type="email" id="contact-email" name="email" required/>
             </div>
           </div>
           <div className="group">
-            <label className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Message</label>
-            <textarea className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40 resize-none" placeholder="Tell me about your project..." rows={5}></textarea>
+            <label htmlFor="contact-message" className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Message</label>
+            <textarea className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40 resize-none" placeholder="Tell me about your project..." rows={5} id="contact-message" name="message" required></textarea>
           </div>
           <button className="w-full md:w-auto bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-primary/20 transition-all flex items-center justify-center gap-3 group" type="submit">
             Send Message
@@ -902,11 +909,11 @@ const Contact = () => (
 );
 
 const Footer = () => (
-  <footer className="bg-surface-container-lowest w-full py-12 px-8 border-t border-outline-variant/10">
+  <footer className="bg-surface-container-lowest w-full pt-12 pb-28 md:pb-12 px-8 border-t border-outline-variant/10">
     <div className="flex flex-col md:flex-row justify-between items-center max-w-[1500px] mx-auto pt-8">
       <div className="mb-6 md:mb-0">
         <div className="text-lg font-bold text-primary font-headline">Suraj Dombale</div>
-        <p className="font-inter text-sm tracking-wide text-on-surface-variant mt-2">© 2026 Suraj Dombale. Crafted with precision.</p>
+        <p className="font-inter text-sm tracking-wide text-on-surface-variant mt-2">© {new Date().getFullYear()} Suraj Dombale. Crafted with precision.</p>
       </div>
       <div className="flex gap-8">
         <a key={"GitHub"} className="text-on-surface-variant hover:text-primary transition-colors font-body text-sm" href="https://github.com/surajdombale" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -942,6 +949,23 @@ export default function App() {
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
+
+  useEffect(() => {
+    const ids = ['home', 'projects', 'skills', 'contact'];
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
+        });
+      },
+      { rootMargin: '-45% 0px -50% 0px' }
+    );
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToSection = (id: string) => {
     setActiveSection(id);
