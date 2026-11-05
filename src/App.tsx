@@ -348,6 +348,59 @@ const StripeBookkeeper = () => (
   </article>
 );
 
+const ReferralRocket = () => (
+  <article className="lg:col-span-12 group">
+    <div className="bg-surface-container rounded-xl overflow-hidden flex flex-col md:flex-row group-hover:bg-surface-container-high transition-colors duration-500">
+      <div className="w-full md:w-3/5 p-8 lg:p-12 space-y-6">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/30 font-label text-[10px] font-bold uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Current role
+          </span>
+          <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Full Stack Developer · 2.5 years</span>
+        </div>
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface">Referral Rocket</h2>
+        <p className="text-lg text-on-surface font-medium">
+          Referral and affiliate platform for SaaS and B2C companies, their affiliates and influencers.
+        </p>
+        <div>
+          <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold mb-4">What I built</p>
+          <ul className="space-y-3 text-on-surface-variant leading-relaxed">
+            {[
+              'Automated tax calculation for affiliate and influencer payouts.',
+              '1099 and W-9 tax form collection from affiliates.',
+              'API rate limiting.',
+              'Embeddable widgets that partners host on their own sites, including the affiliate portal: affiliates log in through Referral Rocket, while the portal shows on the client’s website.',
+              'The Stripe Marketplace app: Stripe account connection, webhooks for subscriptions, invoices and checkout sessions, and automated coupon and reward distribution.',
+            ].map(point => (
+              <li key={point} className="flex gap-3">
+                <ChevronRightIcon className="text-primary shrink-0 mt-1" size={18} />
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {['STRIPE APPS', 'STRIPE CONNECT', 'WEBHOOKS', 'WIDGETS', 'RATE LIMITING', 'TAX AUTOMATION'].map(tag => <Tag key={tag}>{tag}</Tag>)}
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+          <ProjectLink href="https://referralrocket.io/">Website</ProjectLink>
+          <ProjectLink href="https://marketplace.stripe.com/apps/referral-rocket-affiliate-software">Stripe App</ProjectLink>
+          <PrivateCode />
+        </div>
+      </div>
+      <div className="w-full md:w-2/5 h-72 md:h-auto overflow-hidden">
+        <img
+          src={stripe}
+          alt="Referral Rocket on the Stripe App Marketplace"
+          className="w-full h-full object-cover md:grayscale md:opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+    </div>
+  </article>
+);
+
 const Projects = () => (
   <section id="projects" className="pt-32 pb-24 max-w-[1500px] mx-auto px-8">
     <header className="mb-20 space-y-4">
@@ -363,20 +416,24 @@ const Projects = () => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
       <StripeBookkeeper />
 
-      {/* Project 1: Large Featured */}
-      <article className="lg:col-span-12 group">
-        <div className="bg-surface-container rounded-xl overflow-hidden flex flex-col md:flex-row items-center gap-0 group-hover:bg-surface-container-high transition-colors duration-500">
-          
-          <div className="w-full md:w-3/5 p-8 lg:p-12 space-y-6">
+      <ReferralRocket />
+
+      <div className="lg:col-span-12 flex items-center gap-6 -mb-4 lg:-mb-12">
+        <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold whitespace-nowrap">Earlier work</span>
+        <span className="h-px flex-1 bg-outline-variant/20"></span>
+      </div>
+
+      {/* Zapier */}
+      <article className="lg:col-span-7 group">
+        <div className="bg-surface-container rounded-xl p-8 lg:p-10 space-y-8 group-hover:bg-surface-container-high transition-colors duration-500 h-full flex flex-col justify-between">
+          <div className="space-y-6">
             <div className="flex flex-wrap gap-2">
-              {['ZAPIER', 'JAVA', 'WEBHOOKS', 'POSTMAN','APIs'].map(tag => (
-                <span key={tag} className="font-label text-[10px] px-3 py-1 bg-surface-container-lowest text-on-surface-variant rounded-full border border-outline-variant/15">{tag}</span>
-              ))}
+              {['ZAPIER', 'JAVA', 'WEBHOOKS', 'POSTMAN', 'APIs'].map(tag => <Tag key={tag}>{tag}</Tag>)}
             </div>
-            <h2 className="font-headline text-3xl font-bold text-on-surface">
+            <h2 className="font-headline text-2xl font-bold text-on-surface">
               Zapier Automation & Integration Platform
             </h2>
-            <p className="text-on-surface-variant leading-relaxed">
+            <p className="text-on-surface-variant leading-relaxed text-sm">
               Built a scalable automation and integration platform leveraging Zapier to connect multiple services and streamline business workflows.
               <br /><br />
               Designed and developed backend APIs using Java to handle data processing and communication between systems. Implemented webhook-based integrations to trigger real-time actions across connected platforms, enabling seamless automation of complex workflows.
@@ -385,91 +442,19 @@ const Projects = () => (
               <br /><br />
               Handled multiple third-party integrations and automated workflows across different business systems.
             </p>
-            <div className="flex items-center gap-6 pt-4">
-              <a
-                href="https://zapier.com/apps/referral-rocket"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary font-bold hover:underline flex items-center gap-2"
-              >
-                Live App <ExternalLink size={16} />
-              </a>
-
-              <span className="text-on-surface-variant flex items-center gap-2">
-                <TerminalIcon size={16} /> Private Codebase
-              </span>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+              <ProjectLink href="https://zapier.com/apps/referral-rocket">Live App</ProjectLink>
+              <PrivateCode />
             </div>
           </div>
-          <div className="w-full md:w-2/5 h-[600px] overflow-hidden">
+          <div className="h-64 rounded-xl overflow-hidden">
             <img
               src={zapier}
-              alt="zapier automation platform"
-              className="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+              alt="Zapier automation platform"
+              className="w-full h-full object-cover object-top md:grayscale md:opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
               referrerPolicy="no-referrer"
             />
           </div>
-        </div>
-      </article>
-
-      {/* Project 2 */}
-      <article className="lg:col-span-7 group">
-        <div className="bg-surface-container rounded-xl p-8 lg:p-10 space-y-8 group-hover:bg-surface-container-high transition-colors duration-500 relative overflow-hidden h-full flex flex-col justify-between">
-
-          <div className="relative z-10 space-y-6">
-
-            <div className="flex flex-wrap gap-2">
-              {['STRIPE', 'WEBHOOKS', 'STRIPE-CONNECT', 'COUPONS'].map(tag => (
-                <span key={tag} className="font-label text-[10px] px-3 py-1 bg-surface-container-lowest text-on-surface-variant rounded-full">
-                  {tag}
-                </span>
-              ))}
-            </div>
-
-            <h2 className="font-headline text-2xl font-bold text-on-surface">
-              Stripe Automation Platform
-            </h2>
-
-            <p className="text-on-surface-variant leading-relaxed text-sm">
-              Built <span className="text-primary font-medium">Referral Rocket</span>, a Stripe Marketplace app that enables businesses to seamlessly connect their Stripe accounts and automate referral-based monetization workflows.
-
-              <br /><br />
-
-              Implemented secure account integration with Stripe, allowing users to onboard and manage payment data directly within the platform. Designed and developed webhook-based systems to handle real-time events such as subscriptions, invoice payments, and checkout sessions.
-
-              <br /><br />
-
-              Engineered automated workflows for coupon creation and reward distribution using Stripe APIs, ensuring users receive incentives based on successful payments and referral activity. Built the system to support scalable and reliable processing of payment events with consistent business logic execution.
-
-              <br /><br />
-
-              Focused on creating a seamless monetization experience by integrating payments, subscriptions, and reward automation into a unified platform.
-            </p>
-
-            <div className="flex items-center gap-6 pt-4">
-              <a
-                href="https://marketplace.stripe.com/apps/referral-rocket-affiliate-software"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary font-bold hover:underline flex items-center gap-2 text-sm"
-              >
-                View on Stripe <ExternalLink size={16} />
-              </a>
-
-              <span className="text-on-surface-variant flex items-center gap-2 text-sm">
-                <TerminalIcon size={16} /> Private Codebase
-              </span>
-            </div>
-          </div>
-
-          <div className="h-64 rounded-xl overflow-hidden  opacity-40 group-hover:opacity-80 transition-opacity">
-            <img
-              src={stripe}
-              alt="Stripe Automation Platform"
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-
         </div>
       </article>
 
@@ -657,6 +642,12 @@ const Skills = () => (
               color="primary"
               points={[
                 "Leading development of end-to-end features across backend and frontend, taking ownership from requirement analysis to deployment and optimization.",
+
+                "Built automated tax calculation for affiliate and influencer payouts, plus 1099 and W-9 tax form collection from affiliates.",
+
+                "Built embeddable widgets that partners host on their own sites, including the affiliate portal that shows on the client's website while affiliates log in through Referral Rocket.",
+
+                "Implemented API rate limiting and built the Referral Rocket app on the Stripe App Marketplace.",
 
                 "Built and maintained complex payment and monetization systems using Stripe and Razorpay, including webhook handling, subscription flows, and automated coupon distribution.",
 
