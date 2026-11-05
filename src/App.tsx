@@ -47,6 +47,11 @@ import stripe from './images/stripe.jpeg';
 import razorpay from './images/razorpayX.webp';
 import zapier from './images/zapier.png';
 import dashboard from './images/dash.png';
+import sbLogo from './images/smartbatch360/logo.jpg';
+import sbHowItWorks from './images/smartbatch360/how-it-works.svg';
+import sbReport from './images/smartbatch360/sample-batch-report-1.png';
+
+const SB_REPORT_PDF = `${import.meta.env.BASE_URL}smartbatch360-sample-batch-report.pdf`;
 
 
 const Navbar = ({ activeSection, setActiveSection, theme, toggleTheme }: { 
@@ -401,6 +406,74 @@ const ReferralRocket = () => (
   </article>
 );
 
+const SmartBatch360 = () => (
+  <article className="lg:col-span-12 group">
+    <div className="bg-surface-container rounded-xl overflow-hidden group-hover:bg-surface-container-high transition-colors duration-500">
+      <div className="grid grid-cols-1 md:grid-cols-5">
+        <div className="md:col-span-3 p-8 lg:p-12 space-y-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Desktop app · Built for my college lab · V8</span>
+          </div>
+          <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface">SmartBatch360</h2>
+          <p className="text-lg text-on-surface font-medium">
+            Concrete batching plant management app, built for my college's Electrical Engineering department lab.
+          </p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-on-surface-variant text-sm leading-relaxed">
+            {[
+              'Dashboard',
+              'Production runs with per-cycle material weights',
+              'Recipes',
+              'Orders with fulfilment tracking',
+              'Batch reports as PDF or Excel, or printed',
+              'Material consumption analysis',
+            ].map(feature => (
+              <li key={feature} className="flex gap-3">
+                <ChevronRightIcon className="text-primary shrink-0 mt-0.5" size={16} />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="text-on-surface-variant leading-relaxed text-sm">
+            Ships as a single Windows <span className="text-on-surface font-medium">.exe</span> with its own Java runtime and an embedded Spring Boot backend.
+          </p>
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary border border-tertiary/30 font-label text-[10px] font-bold uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+            In progress: PLC integration via OPC UA
+          </span>
+          <div className="flex flex-wrap gap-2">
+            {['JAVA 21', 'JAVAFX', 'SPRING BOOT', 'MYSQL', 'FLYWAY', 'MAVEN'].map(tag => <Tag key={tag}>{tag}</Tag>)}
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+            <ProjectLink href="https://github.com/surajdombale/smartbatch360-showcase">Showcase on GitHub</ProjectLink>
+            <ProjectLink href={SB_REPORT_PDF}>Sample batch report (PDF)</ProjectLink>
+            <PrivateCode />
+          </div>
+        </div>
+        <div className="md:col-span-2 p-8 lg:p-10 flex flex-col gap-6 items-center justify-center bg-surface-container-lowest/60 border-t md:border-t-0 md:border-l border-outline-variant/10">
+          <img src={sbLogo} alt="SmartBatch360 logo" className="w-40 rounded-xl" />
+          <a
+            href={SB_REPORT_PDF}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full max-w-xs rounded-lg overflow-hidden border border-outline-variant/20 shadow-xl shadow-black/20 hover:-translate-y-1 transition-transform duration-300"
+          >
+            <img src={sbReport} alt="SmartBatch360 sample batch report, page 1" className="w-full" />
+          </a>
+          <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold">Sample batch report</p>
+        </div>
+      </div>
+      <div className="px-8 lg:px-12 pb-8 lg:pb-12">
+        <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold mb-4">How it works</p>
+        <img
+          src={sbHowItWorks}
+          alt="How SmartBatch360 works: plan an order, produce the batch, track progress, export the batch report. A JavaFX desktop app talking to a Spring Boot API and MySQL, with PLC integration via OPC UA in progress."
+          className="w-full rounded-xl border border-outline-variant/10"
+        />
+      </div>
+    </div>
+  </article>
+);
+
 const Projects = () => (
   <section id="projects" className="pt-32 pb-24 max-w-[1500px] mx-auto px-8">
     <header className="mb-20 space-y-4">
@@ -417,6 +490,8 @@ const Projects = () => (
       <StripeBookkeeper />
 
       <ReferralRocket />
+
+      <SmartBatch360 />
 
       <div className="lg:col-span-12 flex items-center gap-6 -mb-4 lg:-mb-12">
         <span className="font-label text-xs uppercase tracking-widest text-on-surface-variant font-bold whitespace-nowrap">Earlier work</span>
