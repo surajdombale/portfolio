@@ -273,6 +273,81 @@ const Hero = ({ onWorkClick, onContactClick }: { onWorkClick: () => void, onCont
   </section>
 );
 
+const Tag = ({ children }: { children: React.ReactNode }) => (
+  <span className="font-label text-[10px] px-3 py-1 bg-surface-container-lowest text-on-surface-variant rounded-full border border-outline-variant/15">
+    {children}
+  </span>
+);
+
+const ProjectLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-primary font-bold hover:underline flex items-center gap-2 text-sm"
+  >
+    {children} <ExternalLink size={16} />
+  </a>
+);
+
+const PrivateCode = () => (
+  <span className="text-on-surface-variant flex items-center gap-2 text-sm">
+    <TerminalIcon size={16} /> Private codebase
+  </span>
+);
+
+const StripeBookkeeper = () => (
+  <article className="lg:col-span-12 group">
+    <div className="bg-surface-container rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-5 group-hover:bg-surface-container-high transition-colors duration-500">
+      <div className="md:col-span-3 p-8 lg:p-12 space-y-6">
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary/10 text-tertiary border border-tertiary/30 font-label text-[10px] font-bold uppercase tracking-widest">
+            <span className="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></span>
+            In development
+          </span>
+          <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">Solo build · 0 → 100</span>
+        </div>
+        <h2 className="font-headline text-3xl md:text-4xl font-bold text-on-surface">Stripe Bookkeeper</h2>
+        <p className="text-lg text-on-surface font-medium">Stripe reconciliation and bookkeeping.</p>
+        <p className="text-on-surface-variant leading-relaxed">
+          Listens to Stripe webhook events, keeps the books for connected Stripe accounts, and exports the data in formats accounting software can import.
+        </p>
+        <p className="text-on-surface-variant leading-relaxed">
+          I'm building it solo, end to end: the architecture, the Next.js marketing website, the React app, the Java Spring Boot backend, the MySQL database, the Stripe App, and deployment with Docker on DigitalOcean droplets.
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {['JAVA', 'SPRING BOOT', 'REACT', 'NEXT.JS', 'MYSQL', 'STRIPE APPS', 'DOCKER', 'DIGITALOCEAN'].map(tag => <Tag key={tag}>{tag}</Tag>)}
+        </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-2">
+          <ProjectLink href="https://www.stripebookkeeper.com/">Website</ProjectLink>
+          <span className="text-on-surface-variant flex items-center gap-2 text-sm">
+            <CreditCard size={16} /> Stripe App: coming soon
+          </span>
+          <PrivateCode />
+        </div>
+      </div>
+      <div className="md:col-span-2 bg-surface-container-lowest/60 p-8 lg:p-10 flex flex-col justify-center gap-3 border-t md:border-t-0 md:border-l border-outline-variant/10">
+        <p className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant/70 font-bold mb-2">What I own</p>
+        {[
+          { icon: <Workflow size={20} />, label: 'Stripe events', detail: 'Webhooks from connected accounts' },
+          { icon: <Server size={20} />, label: 'Backend', detail: 'Java · Spring Boot · MySQL' },
+          { icon: <Atom size={20} />, label: 'Frontend', detail: 'React app · Next.js marketing site' },
+          { icon: <CreditCard size={20} />, label: 'Stripe App', detail: 'Coming soon' },
+          { icon: <Cloud size={20} />, label: 'Deployment', detail: 'Docker on DigitalOcean droplets' },
+        ].map(item => (
+          <div key={item.label} className="flex items-center gap-4 p-4 rounded-lg bg-surface-container border border-outline-variant/10">
+            <span className="text-primary shrink-0">{item.icon}</span>
+            <div>
+              <p className="font-headline font-bold text-sm text-on-surface">{item.label}</p>
+              <p className="text-xs text-on-surface-variant">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </article>
+);
+
 const Projects = () => (
   <section id="projects" className="pt-32 pb-24 max-w-[1500px] mx-auto px-8">
     <header className="mb-20 space-y-4">
@@ -286,6 +361,8 @@ const Projects = () => (
     </header>
 
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+      <StripeBookkeeper />
+
       {/* Project 1: Large Featured */}
       <article className="lg:col-span-12 group">
         <div className="bg-surface-container rounded-xl overflow-hidden flex flex-col md:flex-row items-center gap-0 group-hover:bg-surface-container-high transition-colors duration-500">
