@@ -397,11 +397,11 @@ const ReferralRocket = () => (
           <PrivateCode />
         </div>
       </div>
-      <div className="w-full md:w-2/5 h-72 md:h-auto overflow-hidden">
+      <div className="w-full md:w-2/5 flex items-center justify-center p-8 lg:p-10 bg-surface-container-lowest/60 border-t md:border-t-0 md:border-l border-outline-variant/10">
         <img
           src={stripe}
           alt="Referral Rocket on the Stripe App Marketplace"
-          className="w-full h-full object-cover md:grayscale md:opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+          className="w-full h-auto rounded-lg shadow-xl shadow-black/20 md:grayscale md:opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-[1.02] transition-all duration-700"
           referrerPolicy="no-referrer"
         />
       </div>
@@ -489,7 +489,7 @@ const Projects = () => (
       </p>
     </header>
 
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-x-12 lg:gap-y-24">
       <StripeBookkeeper />
 
       <ReferralRocket />
