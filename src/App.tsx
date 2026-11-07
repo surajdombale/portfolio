@@ -759,25 +759,11 @@ const Skills = () => (
               company="Referral Rocket"
               color="primary"
               points={[
-                "Leading development of end-to-end features across backend and frontend, taking ownership from requirement analysis to deployment and optimization.",
-
-                "Built automated tax calculation for affiliate and influencer payouts, plus 1099 and W-9 tax form collection from affiliates.",
-
-                "Built embeddable widgets that partners host on their own sites, including the affiliate portal that shows on the client's website while affiliates log in through Referral Rocket.",
-
-                "Implemented API rate limiting and built the Referral Rocket app on the Stripe App Marketplace.",
-
-                "Built and maintained complex payment and monetization systems using Stripe and Razorpay, including webhook handling, subscription flows, and automated coupon distribution.",
-
-                "Developed scalable integration systems leveraging APIs and webhook architectures, enabling seamless automation across third-party platforms such as Zapier.",
-
-                "Improved system scalability and performance by optimizing APIs, implementing efficient data handling strategies, and enhancing overall backend architecture.",
-
-                "Gained hands-on experience with deployment processes and cloud services, including storage solutions (AWS S3) and production-level system management.",
-
-                "Collaborated closely with cross-functional teams to design and implement user-centric features, ensuring a seamless experience for customers while maintaining technical excellence.",
-
-                "Actively researched and implemented improvements to system architecture, enhancing scalability and reliability for growing user and transaction volumes."
+                "Own features end to end across backend and frontend, from requirements to deployment.",
+                "Built payout tax automation: tax calculation for affiliates and influencers, plus 1099 and W-9 form collection.",
+                "Built embeddable partner widgets, including an affiliate portal that runs on the client's own website.",
+                "Built the Referral Rocket app on the Stripe App Marketplace, with webhooks for subscriptions, invoices and checkout, and automated coupon rewards.",
+                "Added API rate limiting and integrations with Razorpay and Zapier."
               ]}
             />
             <TimelineItem
@@ -786,17 +772,9 @@ const Skills = () => (
               company="GuruSoftwares"
               color="primary"
               points={[
-                "Started my professional journey as a Software Engineer, building a strong foundation in backend and full-stack development using Java, Spring Boot, and React.js.",
-
-                "Gained hands-on experience in developing microservices-based applications, working with REST APIs, database design (MySQL), and backend frameworks like Spring Core and Hibernate.",
-
-                "Worked extensively with modern development tools including VS Code, Postman, Git, and JIRA for efficient development, testing, and collaboration.",
-
-                "Contributed to building responsive web applications using React.js, JavaScript, HTML, and CSS, ensuring cross-browser compatibility and performance.",
-
-                "Developed a strong problem-solving mindset, quickly adapting to new technologies and consistently delivering features under tight deadlines.",
-
-                "Built and maintained backend services with a focus on API design, data handling, and scalable microservices architecture."
+                "Built backend services and REST APIs in Java, Spring Boot and Hibernate, with MySQL database design.",
+                "Worked on microservices-based applications, from API design to data handling.",
+                "Built responsive web apps in React.js, JavaScript, HTML and CSS."
               ]}
             />
           </div>
