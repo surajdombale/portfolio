@@ -829,21 +829,48 @@ const TimelineItem = ({ year, role, company, points, description, color }: any) 
   </div>
 );
 
-const handleContactSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-  const data = new FormData(e.currentTarget);
-  const name = String(data.get('name') || '');
-  const email = String(data.get('email') || '');
-  const message = String(data.get('message') || '');
-  const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-  const body = encodeURIComponent(`${message}
+const CONTACT_EMAIL = 'surajdombale@gmail.com';
+const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
 
-${name}
-${email}`);
-  window.location.href = `mailto:surajdombale@gmail.com?subject=${subject}&body=${body}`;
-};
+type ContactStatus = 'idle' | 'sending' | 'sent' | 'error';
 
-const Contact = () => (
+const Contact = () => {
+  const [status, setStatus] = useState<ContactStatus>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    if (data.get('_honey')) return;
+
+    const name = String(data.get('name') || '').trim();
+    const email = String(data.get('email') || '').trim();
+    const message = String(data.get('message') || '').trim();
+
+    setStatus('sending');
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _replyto: email,
+          _subject: `Portfolio message from ${name}`,
+          _template: 'table',
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || String(json.success) === 'false') throw new Error(json.message || 'Send failed');
+      setStatus('sent');
+      form.reset();
+    } catch {
+      setStatus('error');
+    }
+  };
+
+  return (
   <section id="contact" className="pt-32 pb-24 px-6 md:px-12 max-w-[1500px] mx-auto">
     <header className="mb-20">
       <span className="font-label text-xs uppercase tracking-[0.2em] text-primary mb-4 block">Get In Touch</span>
@@ -858,7 +885,8 @@ const Contact = () => (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
       <section className="lg:col-span-7 bg-surface-container-low p-8 md:p-12 rounded-xl relative overflow-hidden">
         <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
-        <form className="relative z-10 space-y-8" onSubmit={handleContactSubmit}>
+        <form className="relative z-10 space-y-8" onSubmit={handleSubmit}>
+          <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="group">
               <label htmlFor="contact-name" className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Name</label>
@@ -873,10 +901,27 @@ const Contact = () => (
             <label htmlFor="contact-message" className="font-label text-xs uppercase tracking-wider text-outline mb-2 block group-focus-within:text-primary transition-colors">Message</label>
             <textarea className="w-full bg-surface-container text-on-surface border-none border-b-2 border-transparent focus:ring-0 focus:border-primary transition-all p-4 rounded-lg placeholder:text-on-surface-variant/40 resize-none" placeholder="Tell me about your project..." rows={5} id="contact-message" name="message" required></textarea>
           </div>
-          <button className="w-full md:w-auto bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-primary/20 transition-all flex items-center justify-center gap-3 group" type="submit">
-            Send Message
-            <SendIcon className="group-hover:translate-x-1 transition-transform" size={20} />
-          </button>
+          <div className="flex flex-col md:flex-row md:items-center gap-4">
+            <button
+              className="w-full md:w-auto bg-gradient-to-br from-primary to-primary-container text-on-primary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:shadow-2xl hover:shadow-primary/20 transition-all flex items-center justify-center gap-3 group disabled:opacity-60 disabled:cursor-wait"
+              type="submit"
+              disabled={status === 'sending'}
+            >
+              {status === 'sending' ? 'Sending…' : 'Send Message'}
+              <SendIcon className="group-hover:translate-x-1 transition-transform" size={20} />
+            </button>
+            <p role="status" aria-live="polite" className="text-sm">
+              {status === 'sent' && (
+                <span className="text-primary font-medium">Thanks! Your message is on its way. I'll reply by email.</span>
+              )}
+              {status === 'error' && (
+                <span className="text-tertiary">
+                  Couldn't send right now. Email me directly at{' '}
+                  <a className="underline hover:text-primary" href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+                </span>
+              )}
+            </p>
+          </div>
         </form>
       </section>
 
@@ -945,7 +990,8 @@ const Contact = () => (
       </aside>
     </div>
   </section>
-);
+  );
+};
 
 const Footer = () => (
   <footer className="bg-surface-container-lowest w-full pt-12 pb-28 md:pb-12 px-8 border-t border-outline-variant/10">
