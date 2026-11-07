@@ -865,7 +865,8 @@ const Contact = () => {
       if (!res.ok || String(json.success) === 'false') throw new Error(json.message || 'Send failed');
       setStatus('sent');
       form.reset();
-    } catch {
+    } catch (err) {
+      console.warn('Contact form could not send:', err);
       setStatus('error');
     }
   };
