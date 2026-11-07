@@ -830,7 +830,9 @@ const TimelineItem = ({ year, role, company, points, description, color }: any) 
 );
 
 const CONTACT_EMAIL = 'surajdombale@gmail.com';
-const CONTACT_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+// Web3Forms access key. It is meant to be public: it only lets the form send to this inbox.
+const WEB3FORMS_ACCESS_KEY = 'd512feda-3b9f-49df-914e-55d0735ca97a';
+const CONTACT_ENDPOINT = 'https://api.web3forms.com/submit';
 
 type ContactStatus = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -847,22 +849,28 @@ const Contact = () => {
     const email = String(data.get('email') || '').trim();
     const message = String(data.get('message') || '').trim();
 
+    if (!WEB3FORMS_ACCESS_KEY) {
+      console.warn('Contact form could not send: WEB3FORMS_ACCESS_KEY is not set.');
+      setStatus('error');
+      return;
+    }
+
     setStatus('sending');
     try {
       const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio message from ${name}`,
+          from_name: 'Portfolio contact form',
           name,
           email,
           message,
-          _replyto: email,
-          _subject: `Portfolio message from ${name}`,
-          _template: 'table',
         }),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || String(json.success) === 'false') throw new Error(json.message || 'Send failed');
+      if (!res.ok || json.success !== true) throw new Error(json.message || `Send failed (${res.status})`);
       setStatus('sent');
       form.reset();
     } catch (err) {
